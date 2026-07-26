@@ -1,2 +1,5 @@
-# khadamaty-app-
-تطبيق خدمتي - تطبيق كامل مع دليل الإعداد
+الملف,الوصف,
+[khadamaty_app.html](sandbox:///mnt/agents/output/khadamaty_app.html),🚀 التطبيق الكامل — افتحه في المتصفح,
+[google_apps_script.js](sandbox:///mnt/agents/output/google_apps_script.js),ربط Google Sheets (لاحقاً),
+[README.md](sandbox:///mnt/agents/output/README.md),دليل الإعداد الكامل,
+

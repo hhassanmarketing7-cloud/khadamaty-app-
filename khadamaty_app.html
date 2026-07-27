@@ -3,38 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تطبيق خدمتي</title>
+    <title>تطبيق خدمتي 🚀</title>
     <style>
         body { font-family: sans-serif; background: #f4f6f9; padding: 20px; }
-        .container { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; }
-        input, select, textarea, button { width: 100%; margin-top: 10px; padding: 10px; box-sizing: border-box; }
-        button { background: #27ae60; color: white; border: none; font-weight: bold; cursor: pointer; }
+        .container { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        input, select, textarea, button { width: 100%; margin-top: 10px; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 5px; }
+        button { background: #27ae60; color: white; border: none; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        label { font-weight: bold; display: block; margin-top: 10px; }
     </style>
 </head>
 <body>
+
 <div class="container">
     <h2>تطبيق خدمتي 🚀</h2>
     <form>
-        <label>الاسم:</label>
-        <input type="text" placeholder="أدخل اسمك">
-        <label>رقم الهاتف:</label>
-        <input type="tel" placeholder="05XXXXXXXX">
-        <label>الخدمة:</label>
-        <select>
+        <label>نوع المستخدم:</label>
+        <select name="user_type">
+            <option value="client">أنا عميل (أبحث عن خدمة)</option>
+            <option value="worker">أنا عامل / صاحب مهنة (أقدم خدمة)</option>
+        </select>
+
+        <label>الاسم الكامل:</label>
+        <input type="text" placeholder="أدخل اسمك الكريـم">
+
+        <label>رقم الهاتف / الواتساب:</label>
+        <input type="tel" placeholder="77XXXXXXX">
+
+        <label>الدولة:</label>
+        <select name="country">
+            <option value="YE">اليمن 🇾🇪</option>
+            <!-- سنضيف الدول الأخرى مستقبلاً -->
+        </select>
+
+        <label>المحافظة:</label>
+        <select name="city">
+            <option value="taizz">تعز</option>
+            <option value="sanaa_city">أمانة العاصمة (صنعاء)</option>
+            <option value="sanaa_gov">محافظة صنعاء</option>
+            <option value="aden">عدن</option>
+            <option value="ibb">إب</option>
+            <option value="hodeidah">الحديدة</option>
+            <option value="hadramout">حضرموت</option>
+            <option value="dhamar">ذمار</option>
+            <option value="lahj">لحج</option>
+            <option value="abyan">أبين</option>
+            <option value="saada">صعدة</option>
+            <option value="amran">عمران</option>
+            <option value="hajjah">حجة</option>
+            <option value="al_baidha">البيضاء</option>
+            <option value="mareb">مأرب</option>
+            <option value="shabwah">شبوة</option>
+            <option value="al_mahrah">المهرة</option>
+            <option value="al_dhale">الضالع</option>
+            <option value="raymah">ريمة</option>
+            <option value="socotra">سقطرى</option>
+            <option value="al_jawf">الجوف</option>
+        </select>
+
+        <label>المنطقة / الحارة / الشارع:</label>
+        <input type="text" placeholder="مثال: المسبح / شارع جيلاني / الحوبان...">
+
+        <label>التخصص / الخدمة المطلوب تنفيذها:</label>
+        <select name="service">
+            <option>سباك</option>
+            <option>نجار</option>
+            <option>كهربائي</option>
+            <option>دهان</option>
+            <option>تنظيف منازل</option>
             <option>تصميم</option>
             <option>برمجة</option>
             <option>تسويق</option>
-            <option>سباك</option>
-<option>نجار</option>
-<option>كهربائي</option>
-<option>دهان</option>
-<option>تنظيف منازل</option>
-            
+            <option>خدمة أخرى</option>
         </select>
-        <label>التفاصيل:</label>
-        <textarea rows="4"></textarea>
+
+        <label>تفاصيل إضافية (أو عنوان الورشة للعامل):</label>
+        <textarea rows="3" placeholder="اكتب التفاصيل هنا..."></textarea>
+
         <button type="submit">إرسال الطلب</button>
     </form>
 </div>
+
 </body>
 </html>

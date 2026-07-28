@@ -1,147 +1,402 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تطبيق خدماتي 🚀</title>
-  <style>
-    body { font-family: sans-serif; background: #f4f6f9; padding: 20px; direction: rtl; }
-    .container { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    input, select, textarea, button { width: 100%; margin-top: 10px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
-    button { background: #27ae60; color: white; border: none; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 16px; }
-    button:hover { background: #219150; }
-    label { font-weight: bold; display: block; margin-top: 10px; }
-    #status { margin-top: 15px; text-align: center; font-weight: bold; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدماتي</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            padding-bottom: 70px;
+        }
+
+        /* الهيدر العلوي */
+        .navbar {
+            background-color: #1a56db;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar .logo i {
+            font-size: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .navbar .logo-text h1 {
+            font-size: 18px;
+        }
+
+        .navbar .logo-text p {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        .navbar .home-icon {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* الهيرو والبحث */
+        .hero {
+            background: linear-gradient(180deg, #1a56db 0%, #1e40af 100%);
+            color: white;
+            padding: 20px 20px 30px 20px;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+
+        .hero h2 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border-radius: 12px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* المهن */
+        .section-title {
+            padding: 20px 20px 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            gap: 10px;
+        }
+
+        .category-card {
+            background: white;
+            flex: 1;
+            padding: 15px 10px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .category-card .icon-wrap {
+            background: #eff6ff;
+            color: #2563eb;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px auto;
+            font-size: 18px;
+        }
+
+        .category-card span {
+            font-size: 12px;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        /* كروت الفنيين */
+        .technicians {
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tech-card {
+            background: white;
+            border-radius: 16px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        .status-dot {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+        }
+
+        .tech-info {
+            flex: 1;
+            padding-right: 15px;
+        }
+
+        .tech-info h3 {
+            font-size: 15px;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .tech-info .job {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .tech-info .location {
+            color: #64748b;
+            font-size: 11px;
+            margin-bottom: 6px;
+        }
+
+        .tech-info .rating {
+            color: #f59e0b;
+            font-size: 11px;
+        }
+
+        .tech-info .rating span {
+            color: #94a3b8;
+        }
+
+        .tech-price {
+            font-size: 12px;
+            font-weight: bold;
+            color: #0f172a;
+            margin-top: 8px;
+        }
+
+        .tech-avatar img {
+            width: 65px;
+            height: 65px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        /* شريط التنقل السفي */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        .nav-item.active {
+            color: #2563eb;
+        }
+
+        .nav-item i {
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>تطبيق خدماتي 🚀</h2>
-  <form id="serviceForm">
-    
-    <label>نوع المستخدم:</label>
-    <select id="user_type" name="user_type" required>
-      <option value="">اختر النوع...</option>
-      <option value="عميل (أبحث عن خدمة)">عميل (أبحث عن خدمة)</option>
-      <option value="عامل / صاحب مهنة (أقدم خدمة)">عامل / صاحب مهنة (أقدم خدمة)</option>
-    </select>
+    <!-- الهيدر -->
+    <div class="navbar">
+        <a href="#" class="home-icon"><i class="fa-solid fa-house"></i></a>
+        <div class="logo">
+            <div class="logo-text">
+                <h1>خدماتي</h1>
+                <p>فنيوك في متناول يدك</p>
+            </div>
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+        </div>
+    </div>
 
-    <label>الاسم الكامل:</label>
-    <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكريم">
+    <!-- الهيرو والبحث -->
+    <div class="hero">
+        <h2>أهلاً بك في خدماتي! 👋</h2>
+        <p>اعثر على أفضل الفنيين في مدينتك بضغطة زر</p>
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="ابحث عن فني (سباك، كهربائي...)...">
+        </div>
+    </div>
 
-    <label>رقم الهاتف / واتساب:</label>
-    <input type="tel" id="phone" name="phone" required placeholder="77XXXXXXX">
+    <!-- تصفح حسب المهنة -->
+    <div class="section-title">
+        <i class="fa-solid fa-border-all" style="color: #2563eb;"></i> تصفح حسب المهنة
+    </div>
+    <div class="categories">
+        <div class="category-card">
+            <div class="icon-wrap"><i class="fa-solid fa-faucet-drip"></i></div>
+            <span>سباك</span>
+        </div>
+        <div class="category-card">
+            <div class="icon-wrap"><i class="fa-solid fa-bolt"></i></div>
+            <span>كهربائي</span>
+        </div>
+        <div class="category-card">
+            <div class="icon-wrap"><i class="fa-solid fa-hammer"></i></div>
+            <span>نجار</span>
+        </div>
+        <div class="category-card">
+            <div class="icon-wrap"><i class="fa-solid fa-paint-roller"></i></div>
+            <span>صباغ</span>
+        </div>
+    </div>
 
-    <label>الدولة:</label>
-    <select id="country" name="country" required>
-      <option value="اليمن 🇾🇪">اليمن 🇾🇪</option>
-    </select>
+    <!-- الأعلى تقييماً -->
+    <div class="section-title">
+        <i class="fa-solid fa-star" style="color: #f59e0b;"></i> الأعلى تقييماً
+    </div>
+    <div class="technicians">
+        <!-- فني 1 -->
+        <div class="tech-card">
+            <div class="status-dot"></div>
+            <div class="tech-info">
+                <h3>محمد الفهد</h3>
+                <div class="job">نجار</div>
+                <div class="location"><i class="fa-solid fa-location-dot"></i> الدمام، الشاطئ</div>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(203)</span>
+                </div>
+                <div class="tech-price">يبدأ من 150 ريال</div>
+            </div>
+            <div class="tech-avatar">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" alt="صورة">
+            </div>
+        </div>
 
-    <label>المحافظة:</label>
-    <select id="city" name="city" required>
-      <option value="">اختر المحافظة...</option>
-      <option value="تعز">تعز</option>
-      <option value="أمانة العاصمة (صنعاء)">أمانة العاصمة (صنعاء)</option>
-      <option value="محافظة صنعاء">محافظة صنعاء</option>
-      <option value="عدن">عدن</option>
-      <option value="إب">إب</option>
-      <option value="الحديدة">الحديدة</option>
-      <option value="حضرموت">حضرموت</option>
-      <option value="ذمار">ذمار</option>
-      <option value="لحج">لحج</option>
-      <option value="أبين">أبين</option>
-      <option value="صعدة">صعدة</option>
-      <option value="عمران">عمران</option>
-      <option value="حجة">حجة</option>
-      <option value="البيضاء">البيضاء</option>
-      <option value="مأرب">مأرب</option>
-      <option value="شبوة">شبوة</option>
-      <option value="المهرة">المهرة</option>
-      <option value="الضالع">الضالع</option>
-      <option value="ريمة">ريمة</option>
-      <option value="سقطرى">سقطرى</option>
-      <option value="الجوف">الجوف</option>
-    </select>
+        <!-- فني 2 -->
+        <div class="tech-card">
+            <div class="status-dot"></div>
+            <div class="tech-info">
+                <h3>أحمد السالم</h3>
+                <div class="job">سباك</div>
+                <div class="location"><i class="fa-solid fa-location-dot"></i> الرياض، النزهة</div>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(127)</span>
+                </div>
+                <div class="tech-price">يبدأ من 80 ريال</div>
+            </div>
+            <div class="tech-avatar">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" alt="صورة">
+            </div>
+        </div>
 
-    <label>المنطقة / الحارة / الشارع:</label>
-    <input type="text" id="area" name="area" required placeholder="مثال: المظفر / شارع جمال">
+        <!-- فني 3 -->
+        <div class="tech-card">
+            <div class="status-dot"></div>
+            <div class="tech-info">
+                <h3>فهد الدوسري</h3>
+                <div class="job">كهربائي</div>
+                <div class="location"><i class="fa-solid fa-location-dot"></i> مكة، العزيزية</div>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(94)</span>
+                </div>
+                <div class="tech-price">يبدأ من 90 ريال</div>
+            </div>
+            <div class="tech-avatar">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150" alt="صورة">
+            </div>
+        </div>
+    </div>
 
-    <label>التخصص / الخدمة المطلوب تقديمها:</label>
-    <select id="service" name="service" required>
-      <option value="">اختر الخدمة...</option>
-      <option value="سباك">سباك</option>
-      <option value="نجار">نجار</option>
-      <option value="كهربائي">كهربائي</option>
-      <option value="دهان">دهان</option>
-      <option value="تنظيف منازل">تنظيف منازل</option>
-      <option value="تصميم">تصميم</option>
-      <option value="برمجة">برمجة</option>
-      <option value="تسويق">تسويق</option>
-      <option value="صيانة أجهزة">صيانة أجهزة منزلية</option>
-      <option value="أخرى">أخرى</option>
-    </select>
-
-    <button type="submit" id="submitBtn">إرسال البيانات</button>
-  </form>
-
-  <div id="status"></div>
-</div>
-
-<script>
-  const SHEETDB_URL = 'https://sheetdb.io/api/v1/hzh3b6r3dr64r';
-
-  document.getElementById('serviceForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const submitBtn = document.getElementById('submitBtn');
-    const statusDiv = document.getElementById('status');
-    
-    submitBtn.disabled = true;
-    submitBtn.innerText = 'جاري الإرسال...';
-    statusDiv.innerText = '';
-
-    const formData = {
-      "data": [{
-        "الاسم": document.getElementById('name').value,
-        "رقم الهاتف": document.getElementById('phone').value,
-        "نوع المستخدم": document.getElementById('user_type').value,
-        "المحافظة": document.getElementById('city').value,
-        "المنطقة": document.getElementById('area').value,
-        "الخدمة": document.getElementById('service').value
-      }]
-    };
-
-    fetch(SHEETDB_URL, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    })
-    .then(response => response.json())
-    .then(data => {
-      if(data.created) {
-        statusDiv.style.color = 'green';
-        statusDiv.innerText = 'تم تسجيل البيانات بنجاح في جدول البيانات! ✅';
-        document.getElementById('serviceForm').reset();
-      } else {
-        statusDiv.style.color = 'red';
-        statusDiv.innerText = 'حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً.';
-      }
-      submitBtn.disabled = false;
-      submitBtn.innerText = 'إرسال البيانات';
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      statusDiv.style.color = 'red';
-      statusDiv.innerText = 'حدث خطأ في الاتصال بالشبكة.';
-      submitBtn.disabled = false;
-      submitBtn.innerText = 'إرسال البيانات';
-    });
-  });
-</script>
+    <!-- شريط التنقل السفلي -->
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fa-solid fa-house"></i>
+            <span>الرئيسية</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>البحث</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <span>طلباتي</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>حسابي</span>
+        </a>
+    </div>
 
 </body>
 </html>

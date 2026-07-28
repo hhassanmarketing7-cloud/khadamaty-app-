@@ -3,400 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خدماتي</title>
+    <title>خدماتي - المحافظات اليمنية</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body { background-color: #f4f6f9; padding-bottom: 80px; }
 
-        body {
-            background-color: #f4f6f9;
-            padding-bottom: 70px;
-        }
+        /* الهيدر */
+        .navbar { background-color: #1a56db; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .navbar .logo { display: flex; align-items: center; gap: 10px; }
+        .navbar .logo i { font-size: 22px; background: rgba(255, 255, 255, 0.2); padding: 8px; border-radius: 8px; }
+        .navbar h1 { font-size: 18px; }
 
-        /* الهيدر العلوي */
-        .navbar {
-            background-color: #1a56db;
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* الهيرو */
+        .hero { background: linear-gradient(180deg, #1a56db 0%, #1e40af 100%); color: white; padding: 20px; border-bottom-left-radius: 24px; border-bottom-right-radius: 24px; }
+        .hero h2 { font-size: 20px; margin-bottom: 5px; }
+        .hero p { font-size: 13px; opacity: 0.9; margin-bottom: 15px; }
 
-        .navbar .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        /* فلترة المدن والبحث */
+        .filter-box { display: flex; gap: 10px; margin-bottom: 10px; }
+        .filter-box select, .filter-box input { flex: 1; padding: 12px; border-radius: 12px; border: none; font-size: 13px; outline: none; }
+        .filter-box select { background: white; color: #1e293b; font-weight: bold; }
 
-        .navbar .logo i {
-            font-size: 24px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px;
-            border-radius: 8px;
-        }
+        /* زر التسجيل للعامل */
+        .btn-register-toggle { background: #22c55e; color: white; border: none; width: 100%; padding: 12px; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; }
 
-        .navbar .logo-text h1 {
-            font-size: 18px;
-        }
+        /* نموذج تسجيل العمال */
+        .worker-form-card { background: white; margin: 15px 20px; padding: 20px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: none; }
+        .worker-form-card.active { display: block; }
+        .worker-form-card h3 { font-size: 16px; color: #1e293b; margin-bottom: 12px; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 12px; color: #64748b; margin-bottom: 5px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px; }
+        .btn-submit { background: #1a56db; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-        .navbar .logo-text p {
-            font-size: 11px;
-            opacity: 0.8;
-        }
-
-        .navbar .home-icon {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 12px;
-            border-radius: 8px;
-            color: white;
-            text-decoration: none;
-        }
-
-        /* الهيرو والبحث */
-        .hero {
-            background: linear-gradient(180deg, #1a56db 0%, #1e40af 100%);
-            color: white;
-            padding: 20px 20px 30px 20px;
-            border-bottom-left-radius: 24px;
-            border-bottom-right-radius: 24px;
-        }
-
-        .hero h2 {
-            font-size: 22px;
-            margin-bottom: 8px;
-        }
-
-        .hero p {
-            font-size: 13px;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }
-
-        .search-box {
-            position: relative;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 12px 40px 12px 15px;
-            border-radius: 12px;
-            border: none;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .search-box i {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* المهن */
-        .section-title {
-            padding: 20px 20px 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #1e293b;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .categories {
-            display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-            gap: 10px;
-        }
-
-        .category-card {
-            background: white;
-            flex: 1;
-            padding: 15px 10px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .category-card .icon-wrap {
-            background: #eff6ff;
-            color: #2563eb;
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 8px auto;
-            font-size: 18px;
-        }
-
-        .category-card span {
-            font-size: 12px;
-            color: #334155;
-            font-weight: 600;
-        }
+        /* عناوين الأقسام */
+        .section-title { padding: 15px 20px 10px 20px; font-size: 15px; font-weight: bold; color: #1e293b; display: flex; justify-content: space-between; align-items: center; }
 
         /* كروت الفنيين */
-        .technicians {
-            padding: 10px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .technicians { padding: 0 20px; display: flex; flex-direction: column; gap: 12px; }
+        .tech-card { background: white; border-radius: 16px; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .tech-info h3 { font-size: 15px; color: #0f172a; margin-bottom: 4px; }
+        .tech-info .job { color: #2563eb; font-size: 13px; font-weight: 600; }
+        .tech-info .city { color: #64748b; font-size: 12px; margin: 4px 0; }
+        .btn-call { background-color: #22c55e; color: white; text-decoration: none; padding: 8px 14px; border-radius: 10px; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 6px; }
 
-        .tech-card {
-            background: white;
-            border-radius: 16px;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            position: relative;
-        }
-
-        .status-dot {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 8px;
-            height: 8px;
-            background-color: #22c55e;
-            border-radius: 50%;
-        }
-
-        .tech-info {
-            flex: 1;
-            padding-right: 15px;
-        }
-
-        .tech-info h3 {
-            font-size: 15px;
-            color: #0f172a;
-            margin-bottom: 4px;
-        }
-
-        .tech-info .job {
-            color: #2563eb;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .tech-info .location {
-            color: #64748b;
-            font-size: 11px;
-            margin-bottom: 6px;
-        }
-
-        .tech-info .rating {
-            color: #f59e0b;
-            font-size: 11px;
-        }
-
-        .tech-info .rating span {
-            color: #94a3b8;
-        }
-
-        .tech-price {
-            font-size: 12px;
-            font-weight: bold;
-            color: #0f172a;
-            margin-top: 8px;
-        }
-
-        .tech-avatar img {
-            width: 65px;
-            height: 65px;
-            border-radius: 12px;
-            object-fit: cover;
-        }
-
-        /* شريط التنقل السفي */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            color: #64748b;
-            text-decoration: none;
-            font-size: 11px;
-        }
-
-        .nav-item.active {
-            color: #2563eb;
-        }
-
-        .nav-item i {
-            font-size: 18px;
-        }
+        /* الشريط السفلي */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #e2e8f0; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #64748b; text-decoration: none; font-size: 11px; }
+        .nav-item.active { color: #2563eb; }
     </style>
 </head>
 <body>
 
     <!-- الهيدر -->
     <div class="navbar">
-        <a href="#" class="home-icon"><i class="fa-solid fa-house"></i></a>
         <div class="logo">
-            <div class="logo-text">
-                <h1>خدماتي</h1>
-                <p>فنيوك في متناول يدك</p>
-            </div>
             <i class="fa-solid fa-screwdriver-wrench"></i>
+            <h1>خدماتي - اليمن</h1>
         </div>
     </div>
 
     <!-- الهيرو والبحث -->
     <div class="hero">
         <h2>أهلاً بك في خدماتي! 👋</h2>
-        <p>اعثر على أفضل الفنيين في مدينتك بضغطة زر</p>
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="ابحث عن فني (سباك، كهربائي...)...">
+        <p>اختر المحافظة واقتنص أفضل الفنيين المتاحين</p>
+        
+        <div class="filter-box">
+            <select id="cityFilter" onchange="filterWorkers()">
+                <option value="الكل">📍 جميع المحافظات</option>
+                <option value="تعز">تعز</option>
+                <option value="صنعاء">صنعاء</option>
+                <option value="عدن">عدن</option>
+                <option value="إب">إب</option>
+                <option value="الحديدية">الحديدة</option>
+                <option value="حضرموت">حضرموت</option>
+                <option value="مأرب">مأرب</option>
+                <option value="ذمار">ذمار</option>
+            </select>
         </div>
+
+        <button class="btn-register-toggle" onclick="toggleForm()">
+            <i class="fa-solid fa-user-plus"></i> هل أنت عامل؟ سجل بياناتك هنا
+        </button>
     </div>
 
-    <!-- تصفح حسب المهنة -->
+    <!-- نموذج تسجيل العمال -->
+    <div class="worker-form-card" id="workerFormCard">
+        <h3>تسجيل عامل جديد</h3>
+        <form id="workerForm" onsubmit="addWorker(event)">
+            <div class="form-group">
+                <label>الاسم الكامل:</label>
+                <input type="text" id="wName" placeholder="مثال: محمد علي" required>
+            </div>
+            <div class="form-group">
+                <label>المهنة:</label>
+                <select id="wJob" required>
+                    <option value="سباك">سباك</option>
+                    <option value="كهربائي">كهربائي</option>
+                    <option value="نجار">نجار</option>
+                    <option value="صباغ / دهان">صباغ / دهان</option>
+                    <option value="مبلط">مبلط</option>
+                    <option value="مهندس تكييف">مهندس تكييف</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>المحافظة / المدينة:</label>
+                <select id="wCity" required>
+                    <option value="تعز">تعز</option>
+                    <option value="صنعاء">صنعاء</option>
+                    <option value="عدن">عدن</option>
+                    <option value="إب">إب</option>
+                    <option value="الحديدة">الحديدة</option>
+                    <option value="حضرموت">حضرموت</option>
+                    <option value="مأرب">مأرب</option>
+                    <option value="ذمار">ذمار</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>رقم الهاتف (واتساب / اتصال):</label>
+                <input type="tel" id="wPhone" placeholder="770000000" required>
+            </div>
+            <button type="submit" class="btn-submit">حفظ ونشر البيانات</button>
+        </form>
+    </div>
+
+    <!-- قائمة الفنيين -->
     <div class="section-title">
-        <i class="fa-solid fa-border-all" style="color: #2563eb;"></i> تصفح حسب المهنة
-    </div>
-    <div class="categories">
-        <div class="category-card">
-            <div class="icon-wrap"><i class="fa-solid fa-faucet-drip"></i></div>
-            <span>سباك</span>
-        </div>
-        <div class="category-card">
-            <div class="icon-wrap"><i class="fa-solid fa-bolt"></i></div>
-            <span>كهربائي</span>
-        </div>
-        <div class="category-card">
-            <div class="icon-wrap"><i class="fa-solid fa-hammer"></i></div>
-            <span>نجار</span>
-        </div>
-        <div class="category-card">
-            <div class="icon-wrap"><i class="fa-solid fa-paint-roller"></i></div>
-            <span>صباغ</span>
-        </div>
+        <span>الفنيون المتاحون</span>
+        <span id="countText" style="font-size: 12px; color: #64748b;"></span>
     </div>
 
-    <!-- الأعلى تقييماً -->
-    <div class="section-title">
-        <i class="fa-solid fa-star" style="color: #f59e0b;"></i> الأعلى تقييماً
-    </div>
-    <div class="technicians">
-        <!-- فني 1 -->
-        <div class="tech-card">
-            <div class="status-dot"></div>
-            <div class="tech-info">
-                <h3>محمد الفهد</h3>
-                <div class="job">نجار</div>
-                <div class="location"><i class="fa-solid fa-location-dot"></i> الدمام، الشاطئ</div>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(203)</span>
-                </div>
-                <div class="tech-price">يبدأ من 150 ريال</div>
-            </div>
-            <div class="tech-avatar">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" alt="صورة">
-            </div>
-        </div>
-
-        <!-- فني 2 -->
-        <div class="tech-card">
-            <div class="status-dot"></div>
-            <div class="tech-info">
-                <h3>أحمد السالم</h3>
-                <div class="job">سباك</div>
-                <div class="location"><i class="fa-solid fa-location-dot"></i> الرياض، النزهة</div>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(127)</span>
-                </div>
-                <div class="tech-price">يبدأ من 80 ريال</div>
-            </div>
-            <div class="tech-avatar">
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" alt="صورة">
-            </div>
-        </div>
-
-        <!-- فني 3 -->
-        <div class="tech-card">
-            <div class="status-dot"></div>
-            <div class="tech-info">
-                <h3>فهد الدوسري</h3>
-                <div class="job">كهربائي</div>
-                <div class="location"><i class="fa-solid fa-location-dot"></i> مكة، العزيزية</div>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>(94)</span>
-                </div>
-                <div class="tech-price">يبدأ من 90 ريال</div>
-            </div>
-            <div class="tech-avatar">
-                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150" alt="صورة">
-            </div>
-        </div>
+    <div class="technicians" id="workersList">
+        <!-- يتم تحميل العمال هنا تلقائياً -->
     </div>
 
-    <!-- شريط التنقل السفلي -->
+    <!-- الشريط السفلي -->
     <div class="bottom-nav">
-        <a href="#" class="nav-item active">
-            <i class="fa-solid fa-house"></i>
-            <span>الرئيسية</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <span>البحث</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fa-solid fa-clipboard-list"></i>
-            <span>طلباتي</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fa-solid fa-user"></i>
-            <span>حسابي</span>
-        </a>
+        <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i><span>الرئيسية</span></a>
+        <a href="#" class="nav-item" onclick="toggleForm()"><i class="fa-solid fa-user-plus"></i><span>تسجيل عامل</span></a>
     </div>
 
+    <script>
+        // البيانات الأولية وتخزينها في ذاكرة المتصفح
+        let defaultWorkers = [
+            { name: "أحمد العبسي", job: "سباك", city: "تعز", phone: "770000000" },
+            { name: "فؤاد الصنعاني", job: "كهربائي", city: "صنعاء", phone: "730000000" },
+            { name: "يافعي الخلاقي", job: "نجار", city: "عدن", phone: "710000000" }
+        ];
+
+        function getWorkers() {
+            let saved = localStorage.getItem('my_app_workers');
+            return saved ? JSON.parse(saved) : defaultWorkers;
+        }
+
+        function displayWorkers(list) {
+            const container = document.getElementById('workersList');
+            container.innerHTML = '';
+            document.getElementById('countText').innerText = `العدد: ${list.length}`;
+
+            if(list.length === 0) {
+                container.innerHTML = `<p style="text-align:center; color:#94a3b8; padding:20px;">لا يوجد عمال مسجلون في هذه المحافظة حالياً.</p>`;
+                return;
+            }
+
+            list.forEach(w => {
+                container.innerHTML += `
+                    <div class="tech-card">
+                        <div class="tech-info">
+                            <h3>${w.name}</h3>
+                            <div class="job">${w.job}</div>
+                            <div class="city"><i class="fa-solid fa-location-dot"></i> المحافظة: ${w.city}</div>
+                        </div>
+                        <a href="tel:${w.phone}" class="btn-call">
+                            <i class="fa-solid fa-phone"></i> اتصال
+                        </a>
+                    </div>
+                `;
+            });
+        }
+
+        function filterWorkers() {
+            const selectedCity = document.getElementById('cityFilter').value;
+            const allWorkers = getWorkers();
+            if (selectedCity === 'الكل') {
+                displayWorkers(allWorkers);
+            } else {
+                const filtered = allWorkers.filter(w => w.city === selectedCity);
+                displayWorkers(filtered);
+            }
+        }
+
+        function toggleForm() {
+            const form = document.getElementById('workerFormCard');
+            form.classList.toggle('active');
+        }
+
+        function addWorker(e) {
+            e.preventDefault();
+            const newWorker = {
+                name: document.getElementById('wName').value,
+                job: document.getElementById('wJob').value,
+                city: document.getElementById('wCity').value,
+                phone: document.getElementById('wPhone').value
+            };
+
+            let currentWorkers = getWorkers();
+            currentWorkers.unshift(newWorker);
+            localStorage.setItem('my_app_workers', JSON.stringify(currentWorkers));
+
+            document.getElementById('workerForm').reset();
+            toggleForm();
+            filterWorkers();
+            alert('تم تسجيل البيانات بنجاح وستظهر فوراً في التطبيق!');
+        }
+
+        // تشغيل العرض لأول مرة
+        filterWorkers();
+    </script>
 </body>
-</html>
+            </html>
+            
